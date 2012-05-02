@@ -1,0 +1,9 @@
+Smart Lists is light-weight (8KB) script that lets you convert "flat" HTML lists of information into categorized, paginated lists. In essence, it's a presentation layer for improving the readability of related information, without requiring a database or server-side script. I wrote it way back in 2008, but the code is fairly decent and may come in handy for someone.
+
+You can read the documentation and see an example of the script on my site:
+http://www.benjaminkeen.com/software/smartlists/
+
+The script is available as both jQuery or Prototype plugins.
+
+- Ben Keen
+@vancouverben

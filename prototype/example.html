@@ -1,0 +1,413 @@
+<html>
+<head>
+  <script type="text/javascript" src="prototype.js"></script>
+  <script type="text/javascript" src="effects.js"></script>
+  <script type="text/javascript" src="smartlists.js"></script>
+
+  <!-- just to pretty up the page a bit... -->
+  <style type="text/css">
+  body, div, td { font-family: verdana; font-size: 8pt; line-height: 19px; }
+  </style>
+
+  <script type="text/javascript">
+  var sl, sl2;
+
+  Event.observe(window, "load", function() {
+    sl = new SmartList({
+      defaultDropdownOptText:  "All Languages",
+      defaultDropdown2OptText: "All Functionality",
+      dd2Flags:                ["Images", "Emails", "Content Management", "Data", "Forums", "Wiki", "eCommerce"]
+	  });
+
+    sl2 = new SmartList({
+      baseName: "sl2",
+      defaultDropdownOptText:  "All Languages",
+      defaultDropdown2OptText: "All Functionality",
+      dd2Flags:                ["Images", "Emails", "Content Management", "Data", "Forums", "Wiki", "eCommerce"]
+	  });
+  });
+
+
+  function c()
+  {
+    alert("This would link to a details page.");
+    return false;
+  }
+  </script>
+
+  <!-- styles for the first Smart List -->
+  <style type="text/css">
+  #sl-pagination span, #sl-pagination2 span, #sl2-pagination span, #sl2-pagination2 span { padding-left: 2px; padding-right: 2px; font-size: 14px }
+  .sl-pagination-selected, .sl2-pagination-selected, .sl-pagination2-selected, .sl2-pagination2-selected { border: 1px solid #336699; background-color: #E5F3FE; font-weight: bold; padding: 2px; }
+  .sl-pagination-selected a:link, .sl-pagination-selected a:visited,
+      .sl-pagination2-selected a:link, .sl-pagination2-selected a:visited,
+      .sl2-pagination-selected a:link, .sl2-pagination-selected a:visited,
+      .sl2-pagination2-selected a:link, .sl2-pagination2-selected a:visited,
+       { text-decoration: none; color: #0099FF }
+  .item { border-bottom: 1px solid #cccccc; }
+  .bold { font-weight: bold; }
+  .blue { color: #336699; }
+  .top_nav td { background-color: #efefef; }
+  .langbox { background-color: #E5F3FE; margin: 3px; border: 1px solid #666666; padding:2px; }
+  .funcbox { background-color: #ffffcc; margin: 3px; border: 1px solid #666666; padding:2px; }
+  </style>
+
+  <noscript>
+  <style type="text/css">
+  .hide_no_js, .flags { display: none; }
+  </style>
+  </noscript>
+
+</head>
+<body>
+
+	<table border="0" width="100%" align="center">
+	<tr>
+	  <td colspan="3">
+
+      <h1>Smart Lists 1.0.3</h1>
+
+    	<p>
+    	  Added in 1.0.3:
+    	</p>
+
+    	<ul>
+    	  <li>
+    	    Optional second pagination (for bottom of page). For simplicity's sake, the second
+    	    pagination automatically appears if an element with a specific ID is defined in the page:
+    	    <b>[basename]-pagination2</b>.
+    	  </li>
+    	  <li>"Total Results" option. CSS: <b>[basename]-num-results</b></li>
+    	  <li>Option to defined second dropdown for categorizing the data in two ways</li>
+    	  <li>Option to reset Smart List from webpage</li>
+    	</ul>
+
+		</td>
+  </tr>
+	<tr>
+	  <td valign="top">
+
+      <table cellpadding="10" width="100%">
+      <tr>
+        <td valign="top" width="50%">
+
+			    <table cellspacing="2" cellpadding="3" width="100%" class="top_nav" class="hide_no_js">
+			    <tr>
+			      <td width="130">
+			        <div class="bold">Language</div>
+			        <div id="sl-flag-dropdown"></div>
+			      </td>
+			      <td width="130" valign="top">
+			        <div class="bold">Functionality</div>
+			        <div id="sl-flag-dropdown2"></div>
+			      </td>
+			      <td valign="top">
+			        Num Results: <span id="sl-num-results" style="font-size: 10pt;" class="bold blue"></span>
+			      </td>
+			      <td valign="top">
+			        <input type="button" onclick="sl.showAll()" value="Show All" />
+			      </td>
+			      <td align="right" valign="top">
+			        <div id="sl-pagination"></div>
+			      </td>
+			    </tr>
+			    </table>
+
+		    	<br />
+
+		    	<div id="sl">
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		          <div style="float:right" class="flags langbox">PHP JavaScript MySQL</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>Drupal</b></div>
+		    	    A content management system in PHP / MySQL.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">Forums</div>
+
+		    	    <div><b>phpBB</b></div>
+		    	    A popular forums script.
+
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">MySQL</div>
+		          <div style="float:right" class="flags funcbox">Emails Content&nbsp;Management</div>
+
+		    	    <div><b>Joomla</b></div>
+		    	    Another content management system in PHP / MySQL.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Emails</div>
+
+		    	    <div><b>SwiftMailer</b></div>
+		    	    A free, PHP based SMTP email script.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MS-SQL</div>
+		          <div style="float:right" class="flags funcbox">Images Content&nbsp;Management</div>
+
+		    	    <div><b>Wordpress</b></div>
+		    	    A blog / CMS written in PHP / MySQL. Often used as a CMS, too.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Emails</div>
+
+		    	    <div><b>PHPMailer</b></div>
+		    	    A free, PHP based SMTP emailer.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Emails Content&nbsp;Management</div>
+
+		    	    <div><b>ExpressionEngine</b></div>
+		    	    A nice CMS from Ellis Labs, authors of Code Igniter.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">Data</div>
+
+		    	    <div><b>PHPDocumentor</b></div>
+		    	    A JavaDocs-like script written in PHP / MySQL.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">Forums</div>
+
+		    	    <div><b>SMF</b></div>
+		    	    Simple Machines Forums. Another forum software in PHP / MySQL
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">JavaScript</div>
+		          <div style="float:right" class="flags funcbox">Wiki</div>
+
+		    	    <div><b>TiddlyWiki</b></div>
+		    	    A bloody cool little JS wiki app.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">Perl MySQL</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>Content Manager</b></div>
+		    	    A perl-based content management system.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>PHPWiki</b></div>
+		    	    Yet another wiki script.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">JavaScript</div>
+		          <div style="float:right" class="flags funcbox">Images</div>
+
+		    	    <div><b>LightBox 2</b></div>
+		    	    A Nifty JS library for image popups.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">JavaScript</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>TinyMCE</b></div>
+		    	    A WYSIWYG Editor, used on 36987325626 websites.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">eCommerce</div>
+
+		    	    <div><b>OS Commerce</b></div>
+		    	    A bloody awful ecommerce script.
+		    	  </div>
+		    	</div>
+
+		      <div id="sl-no-results" style="display:none">No results found.</div>
+
+					<br />
+		      <div style="float:right" id="sl-pagination2"></div>
+
+		    </td>
+		    <td valign="top">
+
+			    <table cellspacing="2" cellpadding="3" width="100%" class="top_nav" class="hide_no_js">
+			    <tr>
+			      <td width="130">
+			        <div class="bold">Language</div>
+			        <div id="sl2-flag-dropdown"></div>
+			      </td>
+			      <td width="130" valign="top">
+			        <div class="bold">Functionality</div>
+			        <div id="sl2-flag-dropdown2"></div>
+			      </td>
+			      <td valign="top">
+			        Num Results: <span id="sl2-num-results" style="font-size: 10pt;" class="bold blue"></span>
+			      </td>
+			      <td valign="top">
+			        <input type="button" onclick="sl2.showAll()" value="Show All" />
+			      </td>
+			      <td align="right" valign="top">
+			        <div id="sl2-pagination"></div>
+			      </td>
+			    </tr>
+			    </table>
+
+		    	<br />
+
+		    	<div id="sl2">
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		          <div style="float:right" class="flags langbox">PHP JavaScript MySQL</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>Drupal</b></div>
+		    	    A content management system in PHP / MySQL.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">Forums</div>
+
+		    	    <div><b>phpBB</b></div>
+		    	    A popular forums script.
+
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">MySQL</div>
+		          <div style="float:right" class="flags funcbox">Emails Content&nbsp;Management</div>
+
+		    	    <div><b>Joomla</b></div>
+		    	    Another content management system in PHP / MySQL.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Emails</div>
+
+		    	    <div><b>SwiftMailer</b></div>
+		    	    A free, PHP based SMTP email script.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MS-SQL</div>
+		          <div style="float:right" class="flags funcbox">Images Content&nbsp;Management</div>
+
+		    	    <div><b>Wordpress</b></div>
+		    	    A blog / CMS written in PHP / MySQL. Often used as a CMS, too.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Emails</div>
+
+		    	    <div><b>PHPMailer</b></div>
+		    	    A free, PHP based SMTP emailer.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Emails Content&nbsp;Management</div>
+
+		    	    <div><b>ExpressionEngine</b></div>
+		    	    A nice CMS from Ellis Labs, authors of Code Igniter.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">Data</div>
+
+		    	    <div><b>PHPDocumentor</b></div>
+		    	    A JavaDocs-like script written in PHP / MySQL.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">Forums</div>
+
+		    	    <div><b>SMF</b></div>
+		    	    Simple Machines Forums. Another forum software in PHP / MySQL
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">JavaScript</div>
+		          <div style="float:right" class="flags funcbox">Wiki</div>
+
+		    	    <div><b>TiddlyWiki</b></div>
+		    	    A bloody cool little JS wiki app.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">Perl MySQL</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>Content Manager</b></div>
+		    	    A perl-based content management system.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>PHPWiki</b></div>
+		    	    Yet another wiki script.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">JavaScript</div>
+		          <div style="float:right" class="flags funcbox">Images</div>
+
+		    	    <div><b>LightBox 2</b></div>
+		    	    A Nifty JS library for image popups.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">JavaScript</div>
+		          <div style="float:right" class="flags funcbox">Content&nbsp;Management</div>
+
+		    	    <div><b>TinyMCE</b></div>
+		    	    A WYSIWYG Editor, used on 36987325626 websites.
+		    	  </div>
+		    	  <div class="item">
+		    	    <div style="float:right"><a href="#" onclick="return c()">More Info...</a></div>
+		    	    <div style="float:right" class="flags langbox">PHP MySQL</div>
+		          <div style="float:right" class="flags funcbox">eCommerce</div>
+
+		    	    <div><b>OS Commerce</b></div>
+		    	    A bloody awful ecommerce script.
+		    	  </div>
+		    	</div>
+
+		      <div id="sl2-no-results" style="display:none">No results found.</div>
+
+					<br />
+		      <div style="float:right" id="sl2-pagination2"></div>
+
+		    </td>
+		  </tr>
+		  </table>
+
+	  </td>
+	 </tr>
+	 </table>
+
+
+</body>
+</html>
